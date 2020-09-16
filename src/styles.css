@@ -8,10 +8,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     left: 0;
     right: 0;
     bottom: 0;
-    position: relative;
+    position: absolute;
     display: block !important;
     align-items: center;
     justify-content: center;
     padding: 0;
     margin: 0;
+    
+    
 }
