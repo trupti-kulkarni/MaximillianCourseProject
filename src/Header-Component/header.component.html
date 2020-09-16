@@ -5,7 +5,7 @@
     
    <span class="menu"><a href="#">Shopping List</a> </span>   -->
 
-   <button mat-button [matMenuTriggerFor]="menu" style="left: 70%;">Manage</button>
+   <button mat-button [matMenuTriggerFor]="menu" style="left: 70%;" color="primary">Manage</button>
    <mat-menu #menu="matMenu">
        <button mat-menu-item>Save</button>
        <button mat-menu-item>Delete</button>
@@ -14,8 +14,4 @@
   
   </mat-toolbar>
 
-  <mat-tab-group>
-    <mat-tab label="Recipes">  </mat-tab>
-    <mat-tab label="Shopping List">  </mat-tab>
-    
-  </mat-tab-group>
+ 
