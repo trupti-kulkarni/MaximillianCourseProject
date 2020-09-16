@@ -1,0 +1,29 @@
+<mat-card class="addMargin">
+    <mat-card-header>
+        <mat-card-title class="addMargin">
+            <button mat-button color="primary">New Recipe</button>
+        </mat-card-title>
+        <mat-card-subtitle>
+            
+        </mat-card-subtitle>
+        
+    </mat-card-header>
+
+    <mat-card-content class="addMargin" >   
+                <a href=""  *ngFor="let recipe of recipes" style="display: flex; margin: 2%;" >
+                    <div style="display: grid;">
+                        <span>{{recipe.name}}</span>
+                        <span>{{recipe.description}}</span>
+                     </div>
+                    
+                   
+                    <img [src]="recipe.imgPath" [alt]="recipe.imgPath" style="max-height: 50px; position:relative; left: 30%;">
+                    
+                </a>
+            
+    </mat-card-content>
+    <mat-crad-action></mat-crad-action>
+
+</mat-card>
+
+<app-recipe-item> </app-recipe-item>

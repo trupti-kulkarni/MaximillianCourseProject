@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-header>
+        <!-- <div mat-card-avatar><img src="" alt="recipe-img"></div> -->
+        <mat-card-title>Recipe name</mat-card-title>
+        <mat-card-subtitle>
+            <button mat-button  color="primary" [matMenuTriggerFor]="manage">Manage Recipe</button>
+             <mat-menu #manage="matMenu" >
+                
+                <button mat-menu-item>To Shopping List</button>
+                <button mat-menu-item>Edit Recipe</button>
+                <button mat-menu-item>Delete Recipe</button>
+             </mat-menu>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Description</p>
+        <p>Ingredients</p>
+    </mat-card-content>
+    <mat-card-action>
+
+    </mat-card-action>
+</mat-card>
