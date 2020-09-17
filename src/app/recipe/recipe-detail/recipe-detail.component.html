@@ -2,7 +2,7 @@
     <mat-card-header>
        
         <mat-card-title>{{recipe.name}}
-            <img [src]="recipe.imgPath" alt="recipe-img" style="max-height: 50px;">
+        <span><img [src]="recipe.imgPath" alt="recipe-img" style="max-height: 200px;"></span>
         </mat-card-title>
         <mat-card-subtitle>
             <button mat-button  color="primary" [matMenuTriggerFor]="manage">Manage Recipe</button>

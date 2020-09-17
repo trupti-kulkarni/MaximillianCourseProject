@@ -1,15 +1,19 @@
 <div style="margin: 2%;">
+   <form #formIngrdient>
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Add Ingrdient Name">
+        <input matInput placeholder="Add Ingrdient Name" #ingredientName name="name" ngModel>
       </mat-form-field>
       
       <mat-form-field>
         <mat-label>Amount</mat-label>
-        <input matInput placeholder="Add Amount">
+        <input matInput placeholder="Add Amount" #amount name="amount" ngModel>
       </mat-form-field>
-      <hr>
-      <button mat-button color="primary">Add</button>
-      <button mat-button color="warn">Delete</button>
-      <button mat-button color="accent">Clear</button>
+      <div>
+        <button mat-button color="primary" (click)="addIngredients(ingredientName, amount)">Add</button>
+      <button mat-button color="warn" (click)="deleteIngredients(ingrdientName, amount)">Delete</button>
+      <button mat-button color="accent" (click)="reset()">Clear</button>
+      </div>
+      
+    </form>
 </div>
