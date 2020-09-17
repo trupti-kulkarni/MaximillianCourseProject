@@ -10,13 +10,16 @@ import { Recipe } from 'src/app/shared/recipe.model';
 export class RecipeItemComponent implements OnInit {
 
    @Input ('recipe') recipe : Recipe;
-   @Output() selectedRecipe = new  EventEmitter<void> ();
+  @Output() selectedRecipe = new  EventEmitter<void> ();
   constructor() { }
 
   ngOnInit(): void {
+    console.log("in recipe item component")
+
   }
 
   onRecipeSelected(){
+    console.log("on recipe selected-----");
     this.selectedRecipe.emit();
   }
 }
