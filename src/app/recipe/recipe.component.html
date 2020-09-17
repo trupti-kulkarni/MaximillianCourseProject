@@ -1,9 +1,10 @@
 <mat-grid-list cols="2"  rowHeight="2:1" >
     <mat-grid-tile  >
-        <app-recipe-list (selectedRecipeWas)="onRecipeSelected($event)" ></app-recipe-list>
+        <!-- <app-recipe-list (selectedRecipeWas)="onRecipeSelected($event)" ></app-recipe-list> -->
+        <app-recipe-list></app-recipe-list>
     </mat-grid-tile>
     <mat-grid-tile>
-       <app-recipe-detail *ngIf="selectedRecipe"  [recipe]="selectedRecipe" ></app-recipe-detail>
+       <app-recipe-detail *ngIf="selectedRecipe"></app-recipe-detail>
         
     </mat-grid-tile>
     

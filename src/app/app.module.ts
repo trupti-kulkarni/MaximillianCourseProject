@@ -22,6 +22,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput, MatInputModule} from '@angular/material/input';
+import { RecipeService } from './shared/recipe.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import {MatInput, MatInputModule} from '@angular/material/input';
     
    
   ],
-  providers: [],
+  providers: [RecipeService,ShoppingListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

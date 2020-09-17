@@ -6,7 +6,8 @@
     </mat-card-title>
 </mat-card-header>
 <mat-card-content>
-    <app-recipe-item *ngFor="let recipe of recipes" [recipe]=recipe  (selectedRecipe)=loadSelectedRecipe(recipe)> </app-recipe-item>
+    <!-- <app-recipe-item *ngFor="let recipe of recipes" [recipe]=recipe  (selectedRecipe)=loadSelectedRecipe(recipe)> </app-recipe-item> -->
+    <app-recipe-item *ngFor="let recipe of recipes" [recipe]=recipe></app-recipe-item>
 </mat-card-content>
 </mat-card>
   
