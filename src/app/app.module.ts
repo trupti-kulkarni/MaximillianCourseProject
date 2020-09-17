@@ -24,7 +24,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput, MatInputModule} from '@angular/material/input';
 import { RecipeService } from './shared/recipe.service';
 import { ShoppingListService } from './shared/shopping-list.service';
+import { RouterModule } from '@angular/router';
 
+const appRoutes=[
+  {path:"recipes",component:RecipeComponent},
+  {path:"recipeDetails",component:RecipeDetailComponent},
+  {path:"shoppingList",component:ShoppingListComponent}
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +55,8 @@ import { ShoppingListService } from './shared/shopping-list.service';
     MatTabsModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    RouterModule.forRoot(appRoutes)
 
     
    

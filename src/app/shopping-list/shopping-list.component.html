@@ -1,10 +1,14 @@
 
         <app-shopping-list-edit ></app-shopping-list-edit>
         <hr>
-        <mat-list role="list">
-                <mat-list-item role="listitem" *ngFor="let ingredient of ingredients">
-                        <a href=""><p>{{ingredient.name}}({{ingredient.amount}})</p></a>
+        <span *ngFor="let ingredient of ingredients">
+                <a ><p>{{ingredient.name}}({{ingredient.amount}})</p></a>
+        </span>
+        <mat-list role="list" >
+               
+                <!-- <mat-list-item role="listitem" *ngFor="let ingredient of ingredients">
+                        <a ><p>{{ingredient.name}}({{ingredient.amount}})</p></a>
                        
-                </mat-list-item>
+                </mat-list-item> -->
         </mat-list>
     

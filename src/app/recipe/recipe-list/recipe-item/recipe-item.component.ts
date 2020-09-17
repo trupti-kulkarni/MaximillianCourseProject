@@ -15,12 +15,12 @@ export class RecipeItemComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    console.log("in recipe item component")
+    //console.log("in recipe item component")
 
   }
 
   onRecipeSelected(){
-    console.log("on recipe selected-----",this.recipe);
+    //console.log("on recipe selected-----",this.recipe);
 
     this.recipeService.recipeSelected.next(this.recipe);
     //this.selectedRecipe.emit();

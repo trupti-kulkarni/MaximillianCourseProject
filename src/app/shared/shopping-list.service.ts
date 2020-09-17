@@ -1,22 +1,31 @@
-import { BehaviorSubject } from "rxjs";
+import { Injectable, Injector } from "@angular/core";
+import { BehaviorSubject, Subject } from "rxjs";
 import { Ingredient } from "./ingredient.model";
+import { RecipeService } from "./recipe.service";
+
 
 export class ShoppingListService{
-   private ingredients : Ingredient[] =[
-        new Ingredient("onions",10),
-        new Ingredient("garlic",2)
-      ];
-    public ingredientsUpdated= new BehaviorSubject <Ingredient[]>(this.ingredients);
-
-    // public getIngredients(){
-    //     return this.ingredients.slice();
-    // }
+   private ingredients : Ingredient[];
+   
+   public ingredientsUpdated= new BehaviorSubject <Ingredient[]>(null); 
 
     public addIngrdients(ingredient: Ingredient){
-        this.ingredients.push(ingredient);
-         this.ingredientsUpdated.next(this.ingredients);
+           
+        this.ingredientsUpdated.subscribe(
+            (ingredients)=>{
+                this.ingredients=ingredients;
+                this.ingredients.push(ingredient);
+            }
+        )
+         
     }
     public deleteIngredient(){
-        this.ingredients.pop();
+        this.ingredientsUpdated.subscribe(
+            (ingredients)=>{
+                this.ingredients=ingredients;
+                this.ingredients.pop();
+            }
+        )
+        
     }
 }

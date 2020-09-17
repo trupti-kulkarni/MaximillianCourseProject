@@ -18,11 +18,11 @@ export class RecipeListComponent implements OnInit {
     this.recipes= this.recipeService.getRecipes();
   }
 
-  loadSelectedRecipe(selectedRecipe: Recipe){
+  //loadSelectedRecipe(selectedRecipe: Recipe){
     // console.log("on event emit in recipe list")
     // console.log("selected recipe in recipe list component is", selectedRecipe);
     
     // this.selectedRecipeWas.emit(selectedRecipe);
-  }
+  //}
 
 }
