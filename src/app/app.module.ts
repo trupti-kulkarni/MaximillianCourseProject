@@ -23,6 +23,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInput, MatInputModule} from '@angular/material/input';
 import { RecipeService } from './shared/recipe.service';
+import { ShoppingListService } from './shared/shopping-list.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { RecipeService } from './shared/recipe.service';
     
    
   ],
-  providers: [RecipeService,ShoppingListComponent],
+  providers: [RecipeService,ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
