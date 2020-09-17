@@ -7,25 +7,25 @@ import { RecipeService } from "./recipe.service";
 export class ShoppingListService{
    private ingredients : Ingredient[];
    
-   public ingredientsUpdated= new BehaviorSubject <Ingredient[]>(null); 
+//    public ingredientsUpdated= new BehaviorSubject <Ingredient[]>(null); 
 
     public addIngrdients(ingredient: Ingredient){
            
-        this.ingredientsUpdated.subscribe(
-            (ingredients)=>{
-                this.ingredients=ingredients;
-                this.ingredients.push(ingredient);
-            }
-        )
+//         this.ingredientsUpdated.subscribe(
+//             (ingredients)=>{
+//                 this.ingredients=ingredients;
+//                 this.ingredients.push(ingredient);
+//             }
+//         )
          
     }
     public deleteIngredient(){
-        this.ingredientsUpdated.subscribe(
-            (ingredients)=>{
-                this.ingredients=ingredients;
-                this.ingredients.pop();
-            }
-        )
+//         this.ingredientsUpdated.subscribe(
+//             (ingredients)=>{
+//                 this.ingredients=ingredients;
+//                 this.ingredients.pop();
+//             }
+//         )
         
-    }
+   }
 }

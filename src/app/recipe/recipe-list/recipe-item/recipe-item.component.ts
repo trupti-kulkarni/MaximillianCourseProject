@@ -11,6 +11,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
 export class RecipeItemComponent implements OnInit {
 
    @Input ('recipe') recipe : Recipe;
+   @Input('index') index : number;
   //@Output() selectedRecipe = new  EventEmitter<void> ();
   constructor(private recipeService: RecipeService) { }
 
@@ -22,7 +23,7 @@ export class RecipeItemComponent implements OnInit {
   onRecipeSelected(){
     //console.log("on recipe selected-----",this.recipe);
 
-    this.recipeService.recipeSelected.next(this.recipe);
+    //this.recipeService.recipeSelected.next(this.recipe);
     //this.selectedRecipe.emit();
   }
 }

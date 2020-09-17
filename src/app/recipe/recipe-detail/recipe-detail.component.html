@@ -8,7 +8,7 @@
             <button mat-button  color="primary" [matMenuTriggerFor]="manage">Manage Recipe</button>
              <mat-menu #manage="matMenu" >
                 
-                <button mat-menu-item >To Shopping List</button>
+                <button mat-menu-item (click)="goToShoppingList()">To Shopping List</button>
                 <button mat-menu-item>Edit Recipe</button>
                 <button mat-menu-item>Delete Recipe</button>
              </mat-menu>

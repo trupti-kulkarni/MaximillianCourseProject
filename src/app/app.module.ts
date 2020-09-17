@@ -25,12 +25,10 @@ import {MatInput, MatInputModule} from '@angular/material/input';
 import { RecipeService } from './shared/recipe.service';
 import { ShoppingListService } from './shared/shopping-list.service';
 import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 
-const appRoutes=[
-  {path:"recipes",component:RecipeComponent},
-  {path:"recipeDetails",component:RecipeDetailComponent},
-  {path:"shoppingList",component:ShoppingListComponent}
-]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +38,8 @@ const appRoutes=[
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    ShoppingListEditComponent
+    ShoppingListEditComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +55,7 @@ const appRoutes=[
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
 
     
    
