@@ -27,6 +27,7 @@ import { ShoppingListService } from './shared/shopping-list.service';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
+import { RecipeStartComponentComponent } from './recipe/recipe-start-component/recipe-start-component.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component'
     RecipeItemComponent,
     RecipeDetailComponent,
     ShoppingListEditComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    RecipeStartComponentComponent
   ],
   imports: [
     BrowserModule,

@@ -19,11 +19,4 @@ export class RecipeItemComponent implements OnInit {
     //console.log("in recipe item component")
 
   }
-
-  onRecipeSelected(){
-    //console.log("on recipe selected-----",this.recipe);
-
-    //this.recipeService.recipeSelected.next(this.recipe);
-    //this.selectedRecipe.emit();
-  }
 }

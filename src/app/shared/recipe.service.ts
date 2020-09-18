@@ -7,6 +7,8 @@ import { ShoppingListService } from "./shopping-list.service";
 @Injectable()
 export class RecipeService{
 
+  constructor(private sLService: ShoppingListService){}
+
   private recipes: Recipe[] =[
     new  Recipe('Cake', 'This is chocolate cake',"../../../assets/recipe1.jpg",[new Ingredient('all purpose flour',1), new Ingredient('coco powder',2)]),
     new Recipe ('Burger','This is veg cheese burger',"../../../assets/recipe1.jpg",[new Ingredient('cheese',1),new Ingredient('potato',4)])
@@ -18,6 +20,9 @@ export class RecipeService{
     }
     getRecipe(index: number){
       return this.recipes[index];
+    }
+    addIngredientsToShoppingList(ingredients: Ingredient[]) {
+      this.sLService.addIngredients(ingredients);
     }
     
 }

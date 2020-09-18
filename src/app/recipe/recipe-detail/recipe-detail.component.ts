@@ -22,24 +22,20 @@ export class RecipeDetailComponent implements OnInit {
       (params)=>{
         this.id= +params['id'];
         this.recipe=this.recipeService.getRecipe(this.id);
+        
       }
     )
-    
-    //  this.recipeService.recipeSelected.subscribe(
-    //   (recipe : Recipe)=>{
-    //     console.log("recipe in recipe detail component is", recipe);
-    //     this.recipe = recipe;
-    //     this.sLServie.ingredientsUpdated.next(this.recipe.ingredients); // update ingredents from shoppinglist service
-    //   },
-    //   (error)=>{
-    //     console.log("in error recipe Selected")
-    //   }
-    // )
   }
 
   goToShoppingList(){
+    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+
     this.router.navigateByUrl('/shoppingList')
-   // this.router.navigateByUrl("/shoppingList")
+   
+  }
+  editRecipe(){
+    //this.router.navigate(['/recipes/'+this.id+"/edit"]);
+    this.router.navigate(['edit'],{relativeTo: this.activeRoute});
   }
 
 }

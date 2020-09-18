@@ -5,27 +5,26 @@ import { RecipeService } from "./recipe.service";
 
 
 export class ShoppingListService{
-   private ingredients : Ingredient[];
+   private ingredients : Ingredient[]=[];
    
-//    public ingredientsUpdated= new BehaviorSubject <Ingredient[]>(null); 
+   public ingredientsUpdated= new Subject <Ingredient[]>(); 
 
-    public addIngrdients(ingredient: Ingredient){
+   getIngredients(){
+       return this.ingredients.slice();
+   }
+
+   addIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+    this.ingredientsUpdated.next(this.ingredients.slice());
+  }
+    public addIngredients(ingredients: Ingredient[]){
            
-//         this.ingredientsUpdated.subscribe(
-//             (ingredients)=>{
-//                 this.ingredients=ingredients;
-//                 this.ingredients.push(ingredient);
-//             }
-//         )
+        this.ingredients.push(...ingredients);
+        this.ingredientsUpdated.next(this.ingredients.slice());
          
     }
     public deleteIngredient(){
-//         this.ingredientsUpdated.subscribe(
-//             (ingredients)=>{
-//                 this.ingredients=ingredients;
-//                 this.ingredients.pop();
-//             }
-//         )
-        
+      this.ingredients.pop();
+      this.ingredientsUpdated.next(this.ingredients.slice());
    }
 }
