@@ -3,7 +3,7 @@
      
       <mat-form-field  >
         <mat-label>Name</mat-label>
-        <input 
+        <input type="text"
         matInput placeholder="Add Ingrdient Name"
          #ingredientName
          name="name" ngModel
@@ -11,7 +11,7 @@
       </mat-form-field> 
       <mat-form-field  >
         <mat-label>Amount</mat-label>
-        <input  matInput placeholder="Add Amount"
+        <input type="number" matInput placeholder="Add Amount"
          #amount
         name="amount" ngModel
         required

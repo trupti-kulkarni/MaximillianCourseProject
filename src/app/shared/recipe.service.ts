@@ -13,7 +13,7 @@ export class RecipeService{
     new  Recipe('Cake', 'This is chocolate cake',"../../../assets/recipe1.jpg",[new Ingredient('all purpose flour',1), new Ingredient('coco powder',2)]),
     new Recipe ('Burger','This is veg cheese burger',"../../../assets/recipe1.jpg",[new Ingredient('cheese',1),new Ingredient('potato',4)])
   ];
- // public recipeSelected= new BehaviorSubject<Recipe>(this.recipes[0]);
+ public recipeUpdated= new Subject<Recipe[]>();
   
     getRecipes(){
         return this.recipes.slice();
@@ -23,6 +23,16 @@ export class RecipeService{
     }
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
       this.sLService.addIngredients(ingredients);
+    }
+    addRecipe(recipe: Recipe){
+      this.recipes.push(recipe);
+      this.recipeUpdated.next(this.recipes);
+
+    }
+    updateRecipe(index: number,newRecipe:Recipe){
+      this.recipes[index]= newRecipe;
+      this.recipeUpdated.next(this.recipes);
+
     }
     
 }

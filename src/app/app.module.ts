@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +28,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeStartComponentComponent } from './recipe/recipe-start-component/recipe-start-component.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -57,8 +59,10 @@ import { RecipeStartComponentComponent } from './recipe/recipe-start-component/r
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    AppRoutingModule
-
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatIconModule
+   
     
    
   ],

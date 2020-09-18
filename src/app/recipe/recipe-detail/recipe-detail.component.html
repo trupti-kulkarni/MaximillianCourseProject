@@ -14,14 +14,14 @@
              </mat-menu>
         </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content style="height: 100%;">
         <p>{{recipe.description}}</p>
-        <!-- <mat-list role="list">
+        <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let ingredient of recipe.ingredients">
                 {{ingredient.name}} ({{ingredient.amount}})    
             </mat-list-item>
-        </mat-list> -->
-        <span *ngFor="let ingredient of recipe.ingredients"> {{ingredient.name}} ({{ingredient.amount}})    </span>
+        </mat-list>
+        <!-- <span *ngFor="let ingredient of recipe.ingredients"> {{ingredient.name}} ({{ingredient.amount}})    </span> -->
     </mat-card-content>
     
 </mat-card>
