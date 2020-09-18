@@ -25,6 +25,11 @@ export class ShoppingListComponent implements OnInit {
       }
     )
   }
+
+  onClickEditItem(index:number){
+    console.log("on click edit item",index);
+    this.shoppingListService.editIngredient.next(index);
+  }
   onDestroy(){
     this.ingredientUpdatedSub.unsubscribe();
   }

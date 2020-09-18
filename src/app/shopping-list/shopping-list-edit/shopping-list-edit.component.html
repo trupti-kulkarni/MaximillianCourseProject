@@ -1,18 +1,27 @@
 <div style="margin: 2%;">
-   <form #formIngrdient>
-    <mat-form-field>
+   <form #formIngredient="ngForm" (ngSubmit)="addIngredient(formIngredient)">
+     
+      <mat-form-field  >
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Add Ingrdient Name" #ingredientName name="name" ngModel>
-      </mat-form-field>
-      
-      <mat-form-field>
+        <input 
+        matInput placeholder="Add Ingrdient Name"
+         #ingredientName
+         name="name" ngModel
+         required>
+      </mat-form-field> 
+      <mat-form-field  >
         <mat-label>Amount</mat-label>
-        <input matInput placeholder="Add Amount" #amount name="amount" ngModel>
-      </mat-form-field>
-      <div>
-        <button mat-button color="primary" (click)="addIngredient(ingredientName, amount)">Add</button>
-      <button mat-button color="warn" (click)="deleteIngredients(ingrdientName, amount)">Delete</button>
-      <button mat-button color="accent" (click)="reset()">Clear</button>
+        <input  matInput placeholder="Add Amount"
+         #amount
+        name="amount" ngModel
+        required
+        [pattern]="'^[1-9]+[0-9]*$'">
+     
+    </mat-form-field>
+      <div >
+        <button  mat-button color="primary" type="submit" [disabled]="!formIngredient.valid" >{{ editMode ? 'Update' : 'Add' }}</button>
+      <button  mat-button color="warn" type="button"  (click)="deleteIngredients()" [disabled]="!editMode">Delete</button>
+      <button  mat-button color="accent" type="button"  (click)="clearForm()">Clear</button>
       </div>
       
     </form>
