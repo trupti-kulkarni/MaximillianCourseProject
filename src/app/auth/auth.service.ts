@@ -48,17 +48,37 @@ export class AuthService{
             return this.handleError(error);
         }), tap(resp=>{
             const expirationDate= new Date( new Date().getTime()+ parseInt(resp.expiresIn)* 1000);
-             this.user.next(new User(
-                 resp.email,
-                 resp.localId,
-                 resp.idToken,
-                 expirationDate)); 
+            const loggedInUser= new User(
+                resp.email,
+                resp.localId,
+                resp.idToken,
+                expirationDate)
+             this.user.next(loggedInUser);
+             localStorage.setItem('userDate',JSON.stringify(loggedInUser)); 
+            
          }))
+         
+
     }
 
     logOut(){
         this.user.next(null);
         this.router.navigateByUrl('/auth');
+    }
+
+    autoLogin(){
+       const userData= JSON.parse(localStorage.getItem('userDate'));
+       console.log("in autologin", userData);
+       if(!userData){
+           return;
+       }
+       const loadUser=(new User(userData.email, userData.id, userData.token,new Date(userData.tokenExpiration)))
+       console.log("in auto login load user is---",loadUser);
+       if(loadUser._token){  
+           console.log("in token validation")    // to check if token is authenticated
+           this.user.next(loadUser);
+       }
+       
     }
 
     handleError(errorResp:HttpErrorResponse){

@@ -26,6 +26,8 @@ export class AppComponent {
     }, 
 ];
 ngOnInit(): void {
+
+  this.authService.autoLogin();
   
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => this.router.url));
@@ -36,7 +38,7 @@ ngOnInit(): void {
         if(user){
             this.isAuthenticated=true;
         }else{
-          this.isAuthenticated=false;
+          this.isAuthenticated=false;   // on logout to change the DOM
         }
     }
 )
