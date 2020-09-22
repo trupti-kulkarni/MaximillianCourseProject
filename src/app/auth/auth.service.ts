@@ -19,6 +19,7 @@ export interface AuthResponse{
 export class AuthService{
     constructor(private http: HttpClient, private router:Router){}
     user = new BehaviorSubject<User>(null);
+    private tokenExpirationTime: any;
 
     signUP(email:string,password:string){
         return this.http.post <AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyASx1-9fcecOS4krlaEYFDSu-SgTPuSs7w",{
@@ -30,11 +31,14 @@ export class AuthService{
                return this.handleError(error);
         }), tap(resp=>{
            const expirationDate= new Date( new Date().getTime()+ parseInt(resp.expiresIn)* 1000);
-            this.user.next(new User(
-                resp.email,
-                resp.localId,
-                resp.idToken,
-                expirationDate)); 
+           const loggedInUser= new User(
+            resp.email,
+            resp.localId,
+            resp.idToken,
+            expirationDate)
+            this.user.next(loggedInUser); 
+            this.autoLogout(+resp.expiresIn *1000);
+            localStorage.setItem('userDate',JSON.stringify(loggedInUser));
         }));
     }
 
@@ -54,16 +58,22 @@ export class AuthService{
                 resp.idToken,
                 expirationDate)
              this.user.next(loggedInUser);
+             this.autoLogout(+resp.expiresIn *1000);
              localStorage.setItem('userDate',JSON.stringify(loggedInUser)); 
             
-         }))
-         
+         }))     
 
     }
 
     logOut(){
         this.user.next(null);
+        localStorage.removeItem('userData');
         this.router.navigateByUrl('/auth');
+        if(this.tokenExpirationTime){
+            clearTimeout(this.tokenExpirationTime);
+            
+        }
+        this.tokenExpirationTime=null;
     }
 
     autoLogin(){
@@ -77,8 +87,16 @@ export class AuthService{
        if(loadUser._token){  
            console.log("in token validation")    // to check if token is authenticated
            this.user.next(loadUser);
+           const expirationTime=new Date(userData.tokenExpiration).getTime()- new Date().getTime();
+           this.autoLogout(expirationTime);
        }
        
+    }
+    autoLogout(expireIn){
+       this.tokenExpirationTime= setTimeout(()=>{
+            this.logOut();
+        }, 2000)
+
     }
 
     handleError(errorResp:HttpErrorResponse){
