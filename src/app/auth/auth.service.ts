@@ -87,7 +87,7 @@ export class AuthService{
        if(loadUser._token){  
            console.log("in token validation")    // to check if token is authenticated
            this.user.next(loadUser);
-           const expirationTime=new Date(userData.tokenExpiration).getTime()- new Date().getTime();
+           const expirationTime=new Date(userData.tokenExpiration*1000).getTime()- new Date().getTime();
            this.autoLogout(expirationTime);
        }
        
@@ -95,7 +95,7 @@ export class AuthService{
     autoLogout(expireIn){
        this.tokenExpirationTime= setTimeout(()=>{
             this.logOut();
-        }, 2000)
+        }, expireIn)
 
     }
 
