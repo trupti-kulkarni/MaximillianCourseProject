@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { combineAll } from 'rxjs/operators';
-import { AuthService } from './auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { AuthResponse, AuthService } from './auth.service';
 
 
 @Component({
@@ -11,27 +12,43 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private snackBar: MatSnackBar) { }
   isLoginMode: boolean;
+  isLoading:boolean
+  error:string;
+  
 
   ngOnInit(): void {
   }
 
   onSubmit(loginForm: NgForm){
-    //console.log(loginForm.value);
+    console.log("loginMode is---",this.isLoginMode);
+    let authObservable : Observable<AuthResponse>;
     if(!this.isLoginMode){
-      this.authService.signUP(loginForm.value.email,loginForm.value.password).subscribe(
+      this.isLoading=true;
+      authObservable=this.authService.signUP(loginForm.value.email,loginForm.value.password);
+    }
+    else{
+      authObservable=this.authService.login(loginForm.value.email,loginForm.value.password)
+    }
+    
+       authObservable.subscribe(
         (resp)=>{
           console.log(resp)
         },
-        error=>{
-          console.log(error)
+        errorMsg=>{
+          this.error=errorMsg;
+          this.snackBar.open(errorMsg, "", {
+            duration: 2000,
+          });
+          this.isLoading=false;
         }
       )
-
+      this.isLoading=false;
+    
+      loginForm.reset();
     }
-    loginForm.reset();
-  }
+  
   onSwitchMode(){
     this.isLoginMode= !this.isLoginMode;
   }

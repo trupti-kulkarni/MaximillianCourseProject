@@ -31,9 +31,8 @@ import { RecipeStartComponentComponent } from './recipe/recipe-start-component/r
 import {MatIconModule} from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
-
-
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +65,8 @@ import { AuthComponent } from './auth/auth.component';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
    
     
    
