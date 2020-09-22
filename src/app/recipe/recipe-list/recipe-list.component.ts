@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
@@ -13,7 +14,10 @@ export class RecipeListComponent implements OnInit {
   //@Output()selectedRecipeWas= new EventEmitter<Recipe>();
    recipes: Recipe[];
   
-  constructor( private recipeService: RecipeService, private route: Router, private activeRoute: ActivatedRoute) { }
+  constructor( private recipeService: RecipeService,
+     private route: Router,
+      private activeRoute: ActivatedRoute,
+      private dataService:DataStorageService) { }
 
   ngOnInit(): void {
     this.recipes= this.recipeService.getRecipes();

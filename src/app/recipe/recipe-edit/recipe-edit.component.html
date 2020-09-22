@@ -3,7 +3,7 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onFormSubmit()">
         <div>
             <button type="submit" mat-button color="primary" [disabled]="!recipeForm.valid">Save</button>
-            <button type="button" mat-button color="primary">Cancel</button>
+            <button type="button" mat-button color="primary" (click)="resetForm()">Cancel</button>
         </div>
         <div>
             <mat-form-field>
@@ -14,12 +14,12 @@
         <div>
             <mat-form-field>
                 <mat-label>Image URL</mat-label>
-                <input matInput type="text" id="url" formControlName="imgUrl">
+                <input matInput type="text" id="url" formControlName="imgPath">
             </mat-form-field>
         </div>
-        <!-- <div>
-            <img [src]="" mat-card-sm-image>
-        </div> -->
+        <div>
+            <img [src]="recipeForm.value.imgPath">
+        </div>
         <div>
             <mat-form-field>
                 <mat-label>Recipe Description</mat-label>
@@ -43,8 +43,8 @@
                     <mat-label>Amount</mat-label>
                     <input matInput type="number" formControlName="amount" >
                 </mat-form-field>
-                <button mat-fab color="primary">
-                    <mat-icon>delete</mat-icon>
+                <button mat-fab color="primary" type="button">
+                    <mat-icon (click)="deletIngredient(i)">delete</mat-icon>
                   </button>
                   
             </div>

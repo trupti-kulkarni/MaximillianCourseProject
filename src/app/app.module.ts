@@ -29,6 +29,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeStartComponentComponent } from './recipe/recipe-start-component/recipe-start-component.component';
 import {MatIconModule} from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
 
 
 
@@ -43,12 +45,17 @@ import {MatIconModule} from '@angular/material/icon';
     RecipeDetailComponent,
     ShoppingListEditComponent,
     RecipeEditComponent,
-    RecipeStartComponentComponent
+    RecipeStartComponentComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MatIconModule,
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
@@ -59,9 +66,6 @@ import {MatIconModule} from '@angular/material/icon';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatIconModule
    
     
    

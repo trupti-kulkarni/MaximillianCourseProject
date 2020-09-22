@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/app/shared/recipe.model';
 import { RecipeService } from 'src/app/shared/recipe.service';
 
@@ -11,7 +11,7 @@ import { RecipeService } from 'src/app/shared/recipe.service';
 })
 export class RecipeEditComponent implements OnInit {
 
-  constructor(private activeRoute: ActivatedRoute, private recipeService: RecipeService) { }
+  constructor(private activeRoute: ActivatedRoute, private recipeService: RecipeService,private router: Router) { }
 
   id:number;
   editMode:boolean;
@@ -32,7 +32,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeName='';
     let imgUrl='';
     let description= '';
-    let redcipeIngredients= new FormArray([]);
+    let recipeIngredients= new FormArray([]);
     if(this.editMode){
       let editRecipe=this.recipeService.getRecipe(this.id);
       recipeName=editRecipe.name;
@@ -40,7 +40,7 @@ export class RecipeEditComponent implements OnInit {
       description=editRecipe.description;
       if(editRecipe.ingredients.length>0){
         for(let ingredient of editRecipe.ingredients){
-          redcipeIngredients.push(new FormGroup(
+          recipeIngredients.push(new FormGroup(
             {
               "name": new FormControl(ingredient.name,Validators.required),
               "amount": new FormControl(ingredient.amount,[Validators.required])
@@ -53,9 +53,9 @@ export class RecipeEditComponent implements OnInit {
     } 
     this.recipeForm= new FormGroup({
       'name': new FormControl(recipeName, Validators.required),
-      'imgUrl': new FormControl(imgUrl,Validators.required),
+      'imgPath': new FormControl(imgUrl,Validators.required),
       'description': new FormControl(description,Validators.required),
-      'ingredients': redcipeIngredients
+      'ingredients': recipeIngredients
     })
   }
 
@@ -76,6 +76,19 @@ export class RecipeEditComponent implements OnInit {
     else{
       this.recipeService.addRecipe(this.recipeForm.value)
     }
+
+    this.resetForm();
+  }
+
+  resetForm(){
+    // this.editMode=false;
+    // this.recipeForm.reset();
+    this.router.navigate(["../"], {relativeTo: this.activeRoute});
+
+  }
+  deletIngredient(index:number){
+    
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index)
   }
 
 }
