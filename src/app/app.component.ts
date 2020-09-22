@@ -26,6 +26,7 @@ export class AppComponent {
     }, 
 ];
 ngOnInit(): void {
+  
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => this.router.url));
   });
@@ -34,11 +35,14 @@ ngOnInit(): void {
     (user)=>{
         if(user){
             this.isAuthenticated=true;
+        }else{
+          this.isAuthenticated=false;
         }
     }
 )
 }
 ngOnDestroy(){
+  
   this.userSubscription.unsubscribe();
 }
   

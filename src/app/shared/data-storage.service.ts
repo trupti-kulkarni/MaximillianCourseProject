@@ -17,13 +17,10 @@ export  class DataStorageService{
     }
 
     getRecipes(){
-       return  this.authService.user.pipe(
-            take(1),exhaustMap(user=>{ // take only subscribes for once , it will listen to subject change only once when the method is called 
+        // take only subscribes for once , it will listen to subject change only once when the method is called 
                 return this.http.get<Recipe[]>(   // exhaust map will wait to complete an execution of user observable 
-                 'https://angular-demo-project-c7d6b.firebaseio.com/recipes.json',{
-                    params: new HttpParams().set('auth',user._token)
-                 })
-            }),map(recipes => {
+                 'https://angular-demo-project-c7d6b.firebaseio.com/recipes.json'
+            ).pipe(map(recipes => {
               return recipes['recipes'].map(recipe => {return {
                 ...recipe,
                 ingredients: recipe.ingredients ? recipe.ingredients : []

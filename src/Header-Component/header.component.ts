@@ -17,6 +17,8 @@ export class HeaderComponent {
             (user)=>{
                 if(user){
                     this.isAuthenticated=true;
+                }else{
+                    this.isAuthenticated=false;
                 }
             }
         )
@@ -34,6 +36,9 @@ export class HeaderComponent {
     }
     onDestroy(){
         this.userSubscription.unsubscribe();
+    }
+    logOut(){
+        this.authService.logOut();
     }
 
 }
