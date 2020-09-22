@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,9 @@ import { ActivatedRoute, Router, Routes } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  constructor(private router: Router) {}
+   isAuthenticated : boolean;
+   userSubscription: Subscription;
+  constructor(private router: Router, private authService: AuthService) {}
    activeLinkIndex = -1;
 
   navLinks = [
@@ -26,6 +29,17 @@ ngOnInit(): void {
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => this.router.url));
   });
+
+  this.userSubscription=this.authService.user.subscribe(
+    (user)=>{
+        if(user){
+            this.isAuthenticated=true;
+        }
+    }
+)
+}
+ngOnDestroy(){
+  this.userSubscription.unsubscribe();
 }
   
 }

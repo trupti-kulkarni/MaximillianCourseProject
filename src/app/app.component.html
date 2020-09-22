@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<nav mat-tab-nav-bar>
+<nav mat-tab-nav-bar *ngIf="isAuthenticated">
 
   <a mat-tab-link
   *ngFor="let link of navLinks"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthResponse, AuthService } from './auth.service';
 
@@ -12,7 +13,7 @@ import { AuthResponse, AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor(private authService:AuthService, private snackBar: MatSnackBar) { }
+  constructor(private authService:AuthService, private snackBar: MatSnackBar, private router : Router) { }
   isLoginMode: boolean;
   isLoading:boolean
   error:string;
@@ -22,7 +23,7 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(loginForm: NgForm){
-    console.log("loginMode is---",this.isLoginMode);
+    
     let authObservable : Observable<AuthResponse>;
     if(!this.isLoginMode){
       this.isLoading=true;
@@ -34,7 +35,9 @@ export class AuthComponent implements OnInit {
     
        authObservable.subscribe(
         (resp)=>{
-          console.log(resp)
+          console.log(resp);
+          this.router.navigateByUrl('/recipes');
+
         },
         errorMsg=>{
           this.error=errorMsg;
