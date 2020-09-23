@@ -6,9 +6,13 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
+import { RouterModule, Routes } from "@angular/router";
 import { ShoppingListEditComponent } from "./shopping-list-edit/shopping-list-edit.component";
 import { ShoppingListComponent } from "./shopping-list.component";
 
+const routes: Routes=[
+    {path:'shoppingList',component:ShoppingListComponent}
+]
 @NgModule({
     declarations:[
         ShoppingListComponent,
@@ -22,11 +26,12 @@ import { ShoppingListComponent } from "./shopping-list.component";
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
-        MatListModule
+        MatListModule,
+        RouterModule.forChild(routes)
     ],
     exports:[
-        ShoppingListComponent,
-        ShoppingListEditComponent,
+        
+
     ]
 
 })
