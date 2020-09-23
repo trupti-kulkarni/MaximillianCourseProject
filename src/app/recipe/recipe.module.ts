@@ -18,6 +18,8 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { RecipeItemComponent } from "./recipe-list/recipe-item/recipe-item.component";
 import {MatMenuModule} from '@angular/material/menu';
 import { RecipesRoutingModule } from "./recipes-routing.module";
+import { MatIconModule } from "@angular/material/icon";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
     declarations:[
@@ -40,6 +42,8 @@ import { RecipesRoutingModule } from "./recipes-routing.module";
         MatButtonModule,
         MatListModule,
         MatMenuModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
         RecipesRoutingModule
         
     ]
