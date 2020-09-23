@@ -35,16 +35,12 @@ export class AuthComponent implements OnInit {
     
        authObservable.subscribe(
         (resp)=>{
-          console.log("resp in auth observable is---",resp);
           this.isLoading=false;
           this.router.navigate(['/recipes']);
 
         },
         errorMsg=>{
           this.error=errorMsg;
-          this.snackBar.open(errorMsg, "", {
-            duration: 2000,
-          });
           this.isLoading=false;
         }
       ) 
@@ -53,6 +49,9 @@ export class AuthComponent implements OnInit {
   
   onSwitchMode(){
     this.isLoginMode= !this.isLoginMode;
+  }
+  onSnackBarClose(){
+    this.error=null;
   }
 
 }

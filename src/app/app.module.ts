@@ -34,6 +34,7 @@ import { AuthComponent } from './auth/auth.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ShoppingListEditComponent,
     RecipeEditComponent,
     RecipeStartComponentComponent,
-    AuthComponent
+    AuthComponent,
+    MatSnackBarComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@
 <mat-card>
     <mat-card-content >
         <mat-spinner *ngIf="isLoading" style="left: 70%;"></mat-spinner>
+        <app-mat-snack-bar [message]="error" (closeSnackBar)="onSnackBarClose()" *ngIf="error"></app-mat-snack-bar>
         <form *ngIf="!isLoading" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <div>
                 <mat-form-field>
