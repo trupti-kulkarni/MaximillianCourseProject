@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest } from
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { exhaustMap, take } from "rxjs/operators";
-import { User } from "../shared/user.Model";
+import { User } from "./user.Model";
 import { AuthService } from "./auth.service";
 
 @Injectable()

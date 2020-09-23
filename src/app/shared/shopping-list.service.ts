@@ -1,7 +1,7 @@
 import { Injectable, Injector } from "@angular/core";
 import { BehaviorSubject, Subject } from "rxjs";
 import { Ingredient } from "./ingredient.model";
-import { RecipeService } from "./recipe.service";
+import { RecipeService } from "../recipe/recipe.service";
 
 @Injectable()
 export class ShoppingListService {

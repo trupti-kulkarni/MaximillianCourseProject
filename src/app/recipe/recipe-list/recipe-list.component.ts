@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 
-import { Recipe } from 'src/app/shared/recipe.model';
-import { RecipeService } from 'src/app/shared/recipe.service';
+import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',

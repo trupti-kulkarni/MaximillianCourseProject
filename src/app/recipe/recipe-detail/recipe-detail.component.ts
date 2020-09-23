@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipe } from 'src/app/shared/recipe.model';
-import { RecipeService } from 'src/app/shared/recipe.service';
+import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 import { ShoppingListService } from 'src/app/shared/shopping-list.service';
 
 @Component({
@@ -38,8 +38,9 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate(['edit'],{relativeTo: this.activeRoute});
   }
   deleteRecipe(){
-    this.router.navigate([''],{relativeTo: this.activeRoute});
+    
     this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['../'],{relativeTo: this.activeRoute});
   }
 
 }
