@@ -10,31 +10,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { RecipeService } from './recipe/recipe.service';
-import { ShoppingListService } from './shared/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { MatSnackBarComponent } from './shared/mat-snack-bar/mat-snack-bar.component';
-import { RecipeModule } from './recipe/recipe.module';
-import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { MatInputModule } from '@angular/material/input';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AuthComponent,
     MatSnackBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RecipeModule,
-    ShoppingListModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -47,9 +40,10 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatInputModule
+    MatInputModule,
+    AuthModule
   ],
-  providers: [RecipeService,ShoppingListService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

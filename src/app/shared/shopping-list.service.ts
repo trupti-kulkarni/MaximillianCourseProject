@@ -3,7 +3,7 @@ import { BehaviorSubject, Subject } from "rxjs";
 import { Ingredient } from "./ingredient.model";
 import { RecipeService } from "../recipe/recipe.service";
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class ShoppingListService {
   private ingredients: Ingredient[] = [];
 

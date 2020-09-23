@@ -11,7 +11,7 @@ import { ShoppingListEditComponent } from "./shopping-list-edit/shopping-list-ed
 import { ShoppingListComponent } from "./shopping-list.component";
 
 const routes: Routes=[
-    {path:'shoppingList',component:ShoppingListComponent}
+    {path:'',component:ShoppingListComponent}
 ]
 @NgModule({
     declarations:[

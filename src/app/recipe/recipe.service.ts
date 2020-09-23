@@ -4,7 +4,7 @@ import { Ingredient } from "../shared/ingredient.model";
 import { Recipe } from "./recipe.model";
 import { ShoppingListService } from "../shared/shopping-list.service";
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class RecipeService{
 
   constructor(private sLService: ShoppingListService){}
