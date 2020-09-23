@@ -30,15 +30,7 @@ export class AuthService{
             catchError(error=>{
                return this.handleError(error);
         }), tap(resp=>{
-           const expirationDate= new Date( new Date().getTime()+ parseInt(resp.expiresIn)* 1000);
-           const loggedInUser= new User(
-            resp.email,
-            resp.localId,
-            resp.idToken,
-            expirationDate)
-            this.user.next(loggedInUser); 
-            this.autoLogout(+resp.expiresIn *1000);
-            localStorage.setItem('userDate',JSON.stringify(loggedInUser));
+            this.handleAuthentication(resp.email, resp.localId,resp.idToken,+resp.expiresIn);
         }));
     }
 
@@ -51,15 +43,8 @@ export class AuthService{
         catchError(error=>{
             return this.handleError(error);
         }), tap(resp=>{
-            const expirationDate= new Date( new Date().getTime()+ parseInt(resp.expiresIn)* 1000);
-            const loggedInUser= new User(
-                resp.email,
-                resp.localId,
-                resp.idToken,
-                expirationDate)
-             this.user.next(loggedInUser);
-             this.autoLogout(+resp.expiresIn *1000);
-             localStorage.setItem('userDate',JSON.stringify(loggedInUser)); 
+            this.handleAuthentication(resp.email, resp.localId,resp.idToken,+resp.expiresIn);
+             
             
          }))     
 
@@ -67,37 +52,58 @@ export class AuthService{
 
     logOut(){
         this.user.next(null);
-        localStorage.removeItem('userData');
+        localStorage.removeItem('userDate');
         this.router.navigateByUrl('/auth');
-        if(this.tokenExpirationTime){
-            clearTimeout(this.tokenExpirationTime);
+        if(this.tokenExpirationTime ){
+          clearTimeout (this.tokenExpirationTime );
             
         }
         this.tokenExpirationTime=null;
     }
-
+     handleAuthentication(email:string, id:string,token:string, tokenExpiration: number){ // to handle auto logout and expiration token
+        const expirationDate= new Date( new Date().getTime()+ tokenExpiration* 1000);
+        const loggedInUser= new User(email,id,token,expirationDate)
+             this.user.next(loggedInUser);
+             this.autoLogout(tokenExpiration*1000);
+             localStorage.setItem('userDate',JSON.stringify(loggedInUser));
+     }
     autoLogin(){
-       const userData= JSON.parse(localStorage.getItem('userDate'));
+       const userData:{
+        email : string;
+        id: string;
+        _token :string;
+        _tokenExpiration: string;
+       }= JSON.parse(localStorage.getItem('userDate'));
        console.log("in autologin", userData);
        if(!userData){
+           console.log("user data is null")
            return;
        }
-       const loadUser=(new User(userData.email, userData.id, userData.token,new Date(userData.tokenExpiration)))
-       console.log("in auto login load user is---",loadUser);
-       if(loadUser._token){  
+       const loadUser=(new User(
+           userData.email, 
+           userData.id, 
+           userData._token,
+           new Date(userData._tokenExpiration)))
+       //console.log("in auto login token is---",userData._token_expiration);
+       if(loadUser.token){  
            console.log("in token validation")    // to check if token is authenticated
            this.user.next(loadUser);
-           const expirationTime=new Date(userData.tokenExpiration*1000).getTime()- new Date().getTime();
-           this.autoLogout(expirationTime);
+         
+        const expirationDuration =
+        new Date(userData._tokenExpiration).getTime() -
+        new Date().getTime();
+        console.log("expiration duration in auto login is--",expirationDuration);
+         this.autoLogout(expirationDuration * 5000);
        }
        
     }
-    autoLogout(expireIn){
-       this.tokenExpirationTime= setTimeout(()=>{
-            this.logOut();
-        }, expireIn)
+    autoLogout(expirationDuration: number) {
+        this.tokenExpirationTime=setTimeout(() => {
+        console.log("in auto logout--",expirationDuration);
+          this.logOut();
+        }, expirationDuration);
 
-    }
+      }
 
     handleError(errorResp:HttpErrorResponse){
                 let  errorMsg="An error Occured"

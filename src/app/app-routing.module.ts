@@ -12,7 +12,7 @@ import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 
 const appRoutes : Routes=[
       {path:'', redirectTo:'/auth', pathMatch: 'full'},
-      {path: 'recipes',component:RecipeComponent,  canActivate:[AuthGuard],  children: [
+      {path: 'recipes',component:RecipeComponent, canActivate:[AuthGuard],children: [
       {path:'', component:RecipeStartComponentComponent},
       {path:'new',component: RecipeEditComponent},
       {path:':id',component:RecipeDetailComponent,resolve:[RecipeResolverService]},

@@ -35,8 +35,9 @@ export class AuthComponent implements OnInit {
     
        authObservable.subscribe(
         (resp)=>{
-          console.log(resp);
-          this.router.navigateByUrl('/recipes');
+          console.log("resp in auth observable is---",resp);
+          this.isLoading=false;
+          this.router.navigate(['/recipes']);
 
         },
         errorMsg=>{
@@ -46,9 +47,7 @@ export class AuthComponent implements OnInit {
           });
           this.isLoading=false;
         }
-      )
-      this.isLoading=false;
-    
+      ) 
       loginForm.reset();
     }
   
